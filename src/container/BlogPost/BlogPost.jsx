@@ -19,14 +19,27 @@ class BlogPost extends Component {
         //     })
 
         // MEMANGGIL API DENGAN AXIOS
+        this.getPostApi()
+    }
+
+    getPostApi = () => {
         axios.get('http://localhost:3004/posts')
-            .then((result) => {
-                this.setState({
-                    post: result.data
-                })
+        .then((result) => {
+            this.setState({
+                post: result.data
             })
-            .catch((error) => {
-                console.log(error);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
+    handleRemove = (data) => {
+        // console.log(data);
+        axios.delete(`http://localhost:3004/posts/${data}`)
+            .then((result) => {
+                console.log(result);
+                this.getPostApi()
             })
     }
 
@@ -36,7 +49,7 @@ class BlogPost extends Component {
                 <p className="section-title">Blog Post</p>
                 {
                     this.state.post.map(post => {
-                        return <Post key={post.id} title={post.title} desc={post.body}/>
+                        return <Post key={post.id} data={post} remove={this.handleRemove}/>
                     })
                 }
             </Fragment>
