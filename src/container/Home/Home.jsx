@@ -1,8 +1,21 @@
 import React, {Component} from "react";
 import YouTubeComp from "../../component/YouTubeComp/YouTubeComp";
+import LifeCycleComp from "../LifeCycleComp/LifeCycleComp";
 import Product from "../Product/Product";
 
 class Home extends Component {
+    state = {
+      showComponent: true
+    }
+
+    componentDidMount () {
+      // setTimeout(() => {
+      //   this.setState({
+      //     showComponent:false
+      //   })
+      // },15000)
+    }
+
     render() {
         return(
           <div>
@@ -12,9 +25,16 @@ class Home extends Component {
             <YouTubeComp time="8.32" title="Learn React Part 2" desc="Testing 2"/>
             <YouTubeComp time="12.28" title="Learn React Part 3" desc="Testing 3"/>
             <YouTubeComp/> */}
-            <p>Counter</p>
+            {/* <p>Counter</p>
             <hr />
-            <Product/>
+            <Product/> */}
+            <p>LifeCycleComponent</p>
+            <hr />
+            {
+              this.state.showComponent ?
+              <LifeCycleComp/> :
+              null
+            }
           </div>
         )
     }
