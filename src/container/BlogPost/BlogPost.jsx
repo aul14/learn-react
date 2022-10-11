@@ -19,7 +19,7 @@ class BlogPost extends Component {
         //     })
 
         // MEMANGGIL API DENGAN AXIOS
-        axios.get('https://jsonplaceholder.typicode.com/posts')
+        axios.get('http://localhost:3004/posts')
             .then((result) => {
                 this.setState({
                     post: result.data
