@@ -44,7 +44,7 @@ class BlogPost extends Component {
     postDataToAPI = () => {
         axios.post(`http://localhost:3004/posts/`, this.state.formBlogPost)
             .then((result) => {
-                this.getPostAPI()
+                this.getPostAPI();
             })
             .catch((error) => {
                 console.log(error);
