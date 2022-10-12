@@ -38,8 +38,10 @@ class BlogPost extends Component {
         // console.log(data);
         axios.delete(`http://localhost:3004/posts/${data}`)
             .then((result) => {
-                console.log(result);
                 this.getPostApi()
+            })
+            .catch((error) => {
+                console.log(error);
             })
     }
 
