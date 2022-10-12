@@ -5,7 +5,13 @@ import axios from "axios";
 
 class BlogPost extends Component {
     state = {
-        post: []
+        post: [],
+        formBlogPost: {
+            id: 1,
+            title: '',
+            body: '',
+            userId: 1
+        }
     }
     
     componentDidMount () {
@@ -19,11 +25,11 @@ class BlogPost extends Component {
         //     })
 
         // MEMANGGIL API DENGAN AXIOS
-        this.getPostApi()
+        this.getPostAPI()
     }
 
-    getPostApi = () => {
-        axios.get('http://localhost:3004/posts')
+    getPostAPI = () => {
+        axios.get('http://localhost:3004/posts?_sort=id&_order=desc')
         .then((result) => {
             this.setState({
                 post: result.data
@@ -34,21 +40,60 @@ class BlogPost extends Component {
         })
     }
 
-    handleRemove = (data) => {
-        // console.log(data);
-        axios.delete(`http://localhost:3004/posts/${data}`)
+    postDataToAPI = () => {
+        axios.post(`http://localhost:3004/posts/`, this.state.formBlogPost)
             .then((result) => {
-                this.getPostApi()
+                this.getPostAPI()
             })
             .catch((error) => {
                 console.log(error);
             })
     }
 
+    handleRemove = (data) => {
+        axios.delete(`http://localhost:3004/posts/${data}`)
+            .then((result) => {
+                this.getPostAPI()
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+    handleSubmit = () => {
+        this.postDataToAPI()
+        this.setState({
+            formBlogPost : {
+                title : '',
+                body : ''
+            }
+        });
+    }
+
+    handleFormChange = (event) => {
+        let formBlogPostNew = {...this.state.formBlogPost};
+
+        let timestamp = new Date().getTime();
+
+        formBlogPostNew["id"] = timestamp;
+        formBlogPostNew[event.target.name] = event.target.value;
+
+        this.setState({
+            formBlogPost: formBlogPostNew
+        })
+    }
+
     render() {
         return (
             <Fragment>
                 <p className="section-title">Blog Post</p>
+                <div className="form-add-post">
+                    <label htmlFor="title">Title</label>
+                    <input type="text" value={this.state.formBlogPost.title}  name="title" id="title" placeholder="..." onChange={this.handleFormChange} />
+                    <label htmlFor="body">Blog Content</label>
+                    <textarea name="body" value={this.state.formBlogPost.body}  id="body" cols="30" rows="10" onChange={this.handleFormChange}></textarea>
+                    <button className="btn-submit" onClick={this.handleSubmit}>Save</button>
+                </div>
                 {
                     this.state.post.map(post => {
                         return <Post key={post.id} data={post} remove={this.handleRemove}/>
