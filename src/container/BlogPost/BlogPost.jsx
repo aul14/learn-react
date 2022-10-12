@@ -11,7 +11,8 @@ class BlogPost extends Component {
             title: '',
             body: '',
             userId: 1
-        }
+        },
+        isUpdate: false
     }
     
     componentDidMount () {
@@ -50,10 +51,20 @@ class BlogPost extends Component {
             })
     }
 
+    putDataToAPI = () => {
+        axios.put(`http://localhost:3004/posts/${this.state.formBlogPost.id}`,this.state.formBlogPost)
+            .then((result) => {
+                this.getPostAPI();
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
     handleRemove = (data) => {
         axios.delete(`http://localhost:3004/posts/${data}`)
             .then((result) => {
-                this.getPostAPI()
+                this.getPostAPI();
             })
             .catch((error) => {
                 console.log(error);
@@ -61,13 +72,25 @@ class BlogPost extends Component {
     }
 
     handleSubmit = () => {
-        this.postDataToAPI()
+        if (this.state.isUpdate) {
+            this.putDataToAPI();
+        } else {
+            this.postDataToAPI();
+            this.setState({
+                formBlogPost : {
+                    title : '',
+                    body : ''
+                }
+            });
+        }
+    }
+
+    handleUpdate = (data) => {
         this.setState({
-            formBlogPost : {
-                title : '',
-                body : ''
-            }
-        });
+            formBlogPost: data,
+            isUpdate: true
+        })
+     
     }
 
     handleFormChange = (event) => {
@@ -75,7 +98,9 @@ class BlogPost extends Component {
 
         let timestamp = new Date().getTime();
 
-        formBlogPostNew["id"] = timestamp;
+        if (!this.state.isUpdate) {
+            formBlogPostNew["id"] = timestamp;
+        }
         formBlogPostNew[event.target.name] = event.target.value;
 
         this.setState({
@@ -96,7 +121,7 @@ class BlogPost extends Component {
                 </div>
                 {
                     this.state.post.map(post => {
-                        return <Post key={post.id} data={post} remove={this.handleRemove}/>
+                        return <Post key={post.id} data={post} remove={this.handleRemove} update={this.handleUpdate}/>
                     })
                 }
             </Fragment>
