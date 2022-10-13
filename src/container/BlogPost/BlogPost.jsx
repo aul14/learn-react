@@ -111,7 +111,7 @@ class BlogPost extends Component {
     render() {
         return (
             <Fragment>
-                <p className="section-title">Blog Post</p>
+                <p className="section-title">Halaman Blog Post</p>
                 <div className="form-add-post">
                     <label htmlFor="title">Title</label>
                     <input type="text" value={this.state.formBlogPost.title}  name="title" id="title" placeholder="..." onChange={this.handleFormChange} />

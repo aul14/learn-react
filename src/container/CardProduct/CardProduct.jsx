@@ -37,7 +37,7 @@ class CardProduct extends Component {
                     <p className="product-price">Rp. 410.000</p>
                     <div className="counter">
                         <button className="minus" onClick={this.handleMinus}>-</button>
-                        <input type="text" value={this.state.order}/>
+                        <input type="text" value={this.state.order} onChange={this.handleCounterChange}/>
                         <button className="plus" onClick={this.handlePlus}>+</button>
                     </div>
                 </div>
