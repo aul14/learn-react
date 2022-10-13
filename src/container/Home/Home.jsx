@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from "react";
 import YouTubeComp from "../../component/YouTubeComp/YouTubeComp";
-import BlogPost from "../BlogPost/BlogPost";
-import LifeCycleComp from "../LifeCycleComp/LifeCycleComp";
-import Product from "../Product/Product";
+import BlogPost from "../Pages/BlogPost/BlogPost";
+import LifeCycleComp from "../Pages/LifeCycleComp/LifeCycleComp";
+import Product from "../Pages/Product/Product";
 import './Home.css';
 import {
   BrowserRouter,
