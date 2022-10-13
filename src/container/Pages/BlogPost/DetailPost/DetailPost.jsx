@@ -14,6 +14,7 @@ class DetailPost extends Component {
             body: ''
         }
     }
+    
     componentDidMount() {
         let { id } = this.props.params;
 
