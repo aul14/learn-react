@@ -1,15 +1,19 @@
+// LIBRARY
 import React, {Component, Fragment} from "react";
-import YouTubeComp from "../../component/YouTubeComp/YouTubeComp";
-import BlogPost from "../Pages/BlogPost/BlogPost";
-import LifeCycleComp from "../Pages/LifeCycleComp/LifeCycleComp";
-import Product from "../Pages/Product/Product";
-import './Home.css';
 import {
-  BrowserRouter,
+  BrowserRouter as Router,
   Routes,
   Route,
   Link
 } from "react-router-dom";
+// PAGES
+import YouTubeComp from "../../component/YouTubeComp/YouTubeComp";
+import BlogPost from "../Pages/BlogPost/BlogPost";
+import LifeCycleComp from "../Pages/LifeCycleComp/LifeCycleComp";
+import Product from "../Pages/Product/Product";
+import YouTubeCompPages from "../Pages/YouTubeCompPages/YouTubeCompPages";
+//STYLE
+import './Home.css';
 
 class Home extends Component {
     state = {
@@ -26,7 +30,7 @@ class Home extends Component {
 
     render() {
         return(
-          <BrowserRouter>
+          <Router>
             {/* <div>
               <p>Youtube Component</p>
               <hr />
@@ -60,15 +64,19 @@ class Home extends Component {
                   <li>
                     <Link to="/lifecycle">Lifecycle</Link>
                   </li>
+                  <li>
+                    <Link to="/youtube-component">Youtube Component</Link>
+                  </li>
                 </ul>
               </div>
                 <Routes>
                   <Route exact path="/" element={<BlogPost/>}></Route>
                   <Route exact path="/product" element={<Product/>}></Route>
                   <Route exact path="/lifecycle" element={<LifeCycleComp/>}></Route>
+                  <Route exact path="/youtube-component" element={<YouTubeCompPages/>}></Route>
                 </Routes>
             </Fragment>
-          </BrowserRouter>
+          </Router>
         )
     }
 }
