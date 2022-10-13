@@ -9,6 +9,7 @@ import {
 // PAGES
 import YouTubeComp from "../../component/YouTubeComp/YouTubeComp";
 import BlogPost from "../Pages/BlogPost/BlogPost";
+import DetailPost from "../Pages/BlogPost/DetailPost/DetailPost";
 import LifeCycleComp from "../Pages/LifeCycleComp/LifeCycleComp";
 import Product from "../Pages/Product/Product";
 import YouTubeCompPages from "../Pages/YouTubeCompPages/YouTubeCompPages";
@@ -74,6 +75,7 @@ class Home extends Component {
                   <Route exact path="/product" element={<Product/>}></Route>
                   <Route exact path="/lifecycle" element={<LifeCycleComp/>}></Route>
                   <Route exact path="/youtube-component" element={<YouTubeCompPages/>}></Route>
+                  <Route exact path="/detail-post/:id" element={<DetailPost/>} ></Route>
                 </Routes>
             </Fragment>
           </Router>

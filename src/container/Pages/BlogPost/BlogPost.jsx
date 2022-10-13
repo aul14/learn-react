@@ -15,6 +15,7 @@ class BlogPost extends Component {
         isUpdate: false
     }
     
+    
     componentDidMount () {
         // MEMANGGIL API DENGAN FETCH API
         // fetch('https://jsonplaceholder.typicode.com/posts')
@@ -107,6 +108,7 @@ class BlogPost extends Component {
             formBlogPost: formBlogPostNew
         })
     }
+
 
     render() {
         return (
