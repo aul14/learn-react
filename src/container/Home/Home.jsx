@@ -21,8 +21,24 @@ export const rootContext = createContext();
 const Provider = rootContext.Provider;
 
 class Home extends Component {
+    // STATE MANAGEMENT MENGGUNAKAN CONTEXT
     state = {
       totalOrder: 0
+    }
+
+    // MEMBUAT ACTION UNTUK MENGUBAH VALUE
+    dispatch = (action) => {
+      if (action.type == "PLUS_ORDER") {
+          return  this.setState({
+              totalOrder: this.state.totalOrder + 1
+          })
+      } else if (action.type == "MINUS_ORDER" && this.state.totalOrder > 0) {
+          return  this.setState({
+              totalOrder: this.state.totalOrder - 1
+          })
+      } else {
+        return this.state.totalOrder;
+      }    
     }
 
     render() {
@@ -49,7 +65,11 @@ class Home extends Component {
               <hr/>
               <BlogPost />
             </div> */}
-            <Provider value={this.state}>
+            {/* // STATE MANAGEMENT MENGGUNAKAN CONTEXT */}
+            <Provider value={{ 
+              state: this.state,
+              dispatch: this.dispatch 
+             }}>
               <Fragment>
                 <div>
                   <ul>
