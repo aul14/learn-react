@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 // PAGES
 import YouTubeComp from "../../component/YouTubeComp/YouTubeComp";
+import GlobalProvider from "../../context/context";
 import BlogPost from "../Pages/BlogPost/BlogPost";
 import DetailPost from "../Pages/BlogPost/DetailPost/DetailPost";
 import LifeCycleComp from "../Pages/LifeCycleComp/LifeCycleComp";
@@ -16,30 +17,10 @@ import YouTubeCompPages from "../Pages/YouTubeCompPages/YouTubeCompPages";
 //STYLE
 import './Home.css';
 
-// STATE MANAGEMENT MENGGUNAKAN CONTEXT
-export const rootContext = createContext();
-const Provider = rootContext.Provider;
+// STATE MANAGEMENT MENGGUNAKAN CONTEXT DI FOLDER CONTEXT > CONTEXT
+
 
 class Home extends Component {
-    // STATE MANAGEMENT MENGGUNAKAN CONTEXT
-    state = {
-      totalOrder: 0
-    }
-
-    // MEMBUAT ACTION UNTUK MENGUBAH VALUE
-    dispatch = (action) => {
-      if (action.type == "PLUS_ORDER") {
-          return  this.setState({
-              totalOrder: this.state.totalOrder + 1
-          })
-      } else if (action.type == "MINUS_ORDER" && this.state.totalOrder > 0) {
-          return  this.setState({
-              totalOrder: this.state.totalOrder - 1
-          })
-      } else {
-        return this.state.totalOrder;
-      }    
-    }
 
     render() {
         return(
@@ -66,11 +47,7 @@ class Home extends Component {
               <BlogPost />
             </div> */}
             {/* // STATE MANAGEMENT MENGGUNAKAN CONTEXT */}
-            <Provider value={{ 
-              state: this.state,
-              dispatch: this.dispatch 
-             }}>
-              <Fragment>
+            <Fragment>
                 <div>
                   <ul>
                     <li>
@@ -95,10 +72,9 @@ class Home extends Component {
                     <Route exact path="/detail-post/:id" element={<DetailPost/>} ></Route>
                   </Routes>
               </Fragment>
-            </Provider>
           </Router>
         )
     }
 }
 
-export default Home;
+export default GlobalProvider(Home);

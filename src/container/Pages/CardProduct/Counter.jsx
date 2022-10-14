@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from "react";
 import {connect} from "react-redux";
+import { GlobalConsumer } from "../../../context/context";
 import ActionType from "../../../redux/reducer/GlobalActionType";
 import { rootContext } from "../../Home/Home";
 
@@ -45,19 +46,11 @@ class Counter extends Component {
         //     </div>
         // )
         return (
-            <rootContext.Consumer>
-                {
-                    value => {
-                       return (
-                            <div className="counter">
-                                <button className="minus" onClick={() => value.dispatch({ type: "MINUS_ORDER" })}>-</button>
-                                <input type="text" value={value.state.totalOrder} onChange={this.changeTextNull} />
-                                <button className="plus" onClick={() => value.dispatch({ type: "PLUS_ORDER" })}>+</button>
-                            </div>
-                       )
-                    }
-                }
-            </rootContext.Consumer>
+            <div className="counter">
+                <button className="minus" onClick={() => this.props.dispatch({ type: "MINUS_ORDER" })}>-</button>
+                <input type="text" value={this.props.state.totalOrder} onChange={this.changeTextNull} />
+                <button className="plus" onClick={() => this.props.dispatch({ type: "PLUS_ORDER" })}>+</button>
+            </div>
         )
     }
 }
@@ -77,4 +70,4 @@ class Counter extends Component {
 // }
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Counter);
-export default Counter;
+export default GlobalConsumer(Counter);
