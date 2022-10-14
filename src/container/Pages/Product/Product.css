@@ -86,6 +86,11 @@
     border: 0;
     margin: 2px 6px;
   }
+
+  .minus:hover,
+  .plus:hover {
+    cursor: pointer;
+  }
   
   .counter {
     margin-left: 12px;
