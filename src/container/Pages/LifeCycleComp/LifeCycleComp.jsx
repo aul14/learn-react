@@ -67,16 +67,20 @@ class LifeCycleComp extends Component {
                 <hr />
                 <button className="btn" onClick={this.changeCount}>Component Button {this.state.count}</button>
                 <hr />
-                <h1>Total Order = {this.props.order}</h1>
+                {/* STATE MANAGEMENT MENGGUNAKAN REDUX */}
+                {/* <h1>Total Order = {this.props.order}</h1> */}
+                <h1>Total Order = xxx</h1>
             </Fragment>
             )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        order: state.totalOrder
-    }
-}
+// STATE MANAGEMENT MENGGUNAKAN REDUX
+// const mapStateToProps = (state) => {
+//     return {
+//         order: state.totalOrder
+//     }
+// }
 
-export default connect(mapStateToProps)(LifeCycleComp);
+// export default connect(mapStateToProps)(LifeCycleComp);
+export default LifeCycleComp;

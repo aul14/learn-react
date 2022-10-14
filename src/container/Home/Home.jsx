@@ -1,5 +1,5 @@
 // LIBRARY
-import React, {Component, Fragment} from "react";
+import React, {Component, Fragment, createContext} from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,17 +16,13 @@ import YouTubeCompPages from "../Pages/YouTubeCompPages/YouTubeCompPages";
 //STYLE
 import './Home.css';
 
+// STATE MANAGEMENT MENGGUNAKAN CONTEXT
+export const rootContext = createContext();
+const Provider = rootContext.Provider;
+
 class Home extends Component {
     state = {
-      showComponent: true
-    }
-
-    componentDidMount () {
-      // setTimeout(() => {
-      //   this.setState({
-      //     showComponent:false
-      //   })
-      // },15000)
+      totalOrder: 0
     }
 
     render() {
@@ -53,31 +49,33 @@ class Home extends Component {
               <hr/>
               <BlogPost />
             </div> */}
-            <Fragment>
-              <div>
-                <ul>
-                  <li>
-                    <Link to="/">Blog Post</Link>
-                  </li>
-                  <li>
-                    <Link to="/product">Product</Link>
-                  </li>
-                  <li>
-                    <Link to="/lifecycle">Lifecycle</Link>
-                  </li>
-                  <li>
-                    <Link to="/youtube-component">Youtube Component</Link>
-                  </li>
-                </ul>
-              </div>
-                <Routes>
-                  <Route exact path="/" element={<BlogPost/>}></Route>
-                  <Route exact path="/product" element={<Product/>}></Route>
-                  <Route exact path="/lifecycle" element={<LifeCycleComp/>}></Route>
-                  <Route exact path="/youtube-component" element={<YouTubeCompPages/>}></Route>
-                  <Route exact path="/detail-post/:id" element={<DetailPost/>} ></Route>
-                </Routes>
-            </Fragment>
+            <Provider value={this.state}>
+              <Fragment>
+                <div>
+                  <ul>
+                    <li>
+                      <Link to="/">Blog Post</Link>
+                    </li>
+                    <li>
+                      <Link to="/product">Product</Link>
+                    </li>
+                    <li>
+                      <Link to="/lifecycle">Lifecycle</Link>
+                    </li>
+                    <li>
+                      <Link to="/youtube-component">Youtube Component</Link>
+                    </li>
+                  </ul>
+                </div>
+                  <Routes>
+                    <Route exact path="/" element={<BlogPost/>}></Route>
+                    <Route exact path="/product" element={<Product/>}></Route>
+                    <Route exact path="/lifecycle" element={<LifeCycleComp/>}></Route>
+                    <Route exact path="/youtube-component" element={<YouTubeCompPages/>}></Route>
+                    <Route exact path="/detail-post/:id" element={<DetailPost/>} ></Route>
+                  </Routes>
+              </Fragment>
+            </Provider>
           </Router>
         )
     }

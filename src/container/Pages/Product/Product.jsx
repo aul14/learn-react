@@ -25,7 +25,9 @@ class Product extends Component {
                     </div>
                     <div className="troley">
                         <img src="https://etanee.id/static/media/basket-blue.937a12ce.svg" alt="" />
-                        <div className="count">{this.props.order}</div>
+                        {/* STATE MANAGEMENT MENGGUNAKAN REDUX */}
+                        {/* <div className="count">{this.props.order}</div> */}
+                        <div className="count">0</div>
                     </div>
                 </div>
 
@@ -37,10 +39,12 @@ class Product extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        order: state.totalOrder
-    }
-}
+// STATE MANAGEMENT MENGGUNAKAN REDUX
+// const mapStateToProps = (state) => {
+//     return {
+//         order: state.totalOrder
+//     }
+// }
 
-export default connect(mapStateToProps)(Product);
+// export default connect(mapStateToProps)(Product);
+export default Product;
