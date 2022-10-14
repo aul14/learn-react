@@ -3,11 +3,10 @@ import React, {Component, createContext} from "react"
 const rootContext = createContext();
 const Provider = rootContext.Provider;
 
-// PROVIDER
+// STATE MANAGEMENT MENGGUNAKAN CONTEXT PROVIDER
 const GlobalProvider = (Children) => {
     return (
         class ParentComponent extends Component {
-            // STATE MANAGEMENT MENGGUNAKAN CONTEXT
             state = {
                 totalOrder: 0
             }
@@ -45,7 +44,7 @@ const GlobalProvider = (Children) => {
 }
 export default GlobalProvider;
 
-// CONSUMER
+// STATE MANAGEMENT MENGGUNAKAN CONTEXT CONSUMER
 const Consumer = rootContext.Consumer;
 export const GlobalConsumer = (Children) => {
     return (
