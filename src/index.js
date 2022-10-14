@@ -5,31 +5,12 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Home from "./container/Home/Home";
 import { Provider } from "react-redux";
+import rootReducer from "./redux/reducer/GlobalReducer";
 
 const redux = require("redux");
 const createStore = redux.createStore;
 
-// DEFAULT NILAI STATE
-const initialState = {
-  totalOrder: 0,
-};
-
-// MEMBUAT REDUX REDUCER
-const rootReducer = (state = initialState, action) => {
-  if (action.type == "PLUS_ORDER") {
-    return {
-      ...state,
-      totalOrder: state.totalOrder + 1,
-    };
-  } else if (action.type == "MINUS_ORDER" && state.totalOrder > 0) {
-    return {
-      ...state,
-      totalOrder: state.totalOrder - 1,
-    };
-  } else {
-    return state;
-  }
-};
+// MEMBUAT REDUX REDUCER DI FOLDER REDUX > REDUCER > GlobalReducer
 
 // MEMBUAT REDUX STORE
 const store = createStore(rootReducer);
