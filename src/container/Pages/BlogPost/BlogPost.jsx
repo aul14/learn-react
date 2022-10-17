@@ -52,23 +52,15 @@ class BlogPost extends Component {
     }
 
     putDataToAPI = () => {
-        axios.put(`http://localhost:3004/posts/${this.state.formBlogPost.id}`,this.state.formBlogPost)
-            .then((result) => {
-                this.getPostAPI();
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        API.PutNewsBlog(this.state.formBlogPost, this.state.formBlogPost.id).then((result) => {
+            this.getPostAPI();
+        })
     }
 
     handleRemove = (data) => {
-        axios.delete(`http://localhost:3004/posts/${data}`)
-            .then((result) => {
-                this.getPostAPI();
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        API.DeleteNewsBlog(data).then((result) => {
+            this.getPostAPI();
+        })
     }
 
     handleSubmit = () => {
