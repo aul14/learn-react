@@ -11,6 +11,7 @@ import YouTubeComp from "../../component/YouTubeComp/YouTubeComp";
 import GlobalProvider from "../../context/context";
 import BlogPost from "../Pages/BlogPost/BlogPost";
 import DetailPost from "../Pages/BlogPost/DetailPost/DetailPost";
+import Hooks from "../Pages/Hooks/Hooks";
 import LifeCycleComp from "../Pages/LifeCycleComp/LifeCycleComp";
 import Product from "../Pages/Product/Product";
 import YouTubeCompPages from "../Pages/YouTubeCompPages/YouTubeCompPages";
@@ -62,6 +63,9 @@ class Home extends Component {
                     <li>
                       <Link to="/youtube-component">Youtube Component</Link>
                     </li>
+                    <li>
+                      <Link to="/hooks">Hooks</Link>
+                    </li>
                   </ul>
                 </div>
                   <Routes>
@@ -70,6 +74,7 @@ class Home extends Component {
                     <Route exact path="/lifecycle" element={<LifeCycleComp/>}></Route>
                     <Route exact path="/youtube-component" element={<YouTubeCompPages/>}></Route>
                     <Route exact path="/detail-post/:id" element={<DetailPost/>} ></Route>
+                    <Route exact path="/hooks" element={<Hooks/>} ></Route>
                   </Routes>
               </Fragment>
           </Router>
