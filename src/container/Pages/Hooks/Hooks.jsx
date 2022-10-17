@@ -24,7 +24,7 @@ import './Hooks.css';
 //     }
 // }
 
-const Hooks = (props) => {
+const Hooks = () => {
     const [count, setCount] = useState(0);
     return (
         <div className="p-hooks">
