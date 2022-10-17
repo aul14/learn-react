@@ -38,11 +38,11 @@ class BlogPost extends Component {
                 post: result
             })
         });
-        API.GetComments().then((result) => {
-            this.setState({
-                comment: result
-            })
-        });
+        // API.GetComments().then((result) => {
+        //     this.setState({
+        //         comment: result
+        //     })
+        // });
     }
 
     postDataToAPI = () => {
@@ -124,11 +124,11 @@ class BlogPost extends Component {
                     <textarea name="body" value={this.state.formBlogPost.body}  id="body" cols="30" rows="10" onChange={this.handleFormChange}></textarea>
                     <button className="btn-submit" onClick={this.handleSubmit}>Save</button>
                 </div>
-                {
+                {/* {
                     this.state.comment.map(comment => {
                         return <p>{comment.name} - {comment.email}</p>
                     })
-                }
+                } */}
                 {
                     this.state.post.map(post => {
                         return <Post key={post.id} data={post} remove={this.handleRemove} update={this.handleUpdate}/>
